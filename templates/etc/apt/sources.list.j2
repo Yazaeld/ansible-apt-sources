@@ -7,7 +7,7 @@
 {{ item }} {{ apt_sources_debian_repository_url }}/{{ ansible_distribution|lower }} {{ ansible_distribution_release|lower }}-backports main
 {%     endif %}
 {%     if apt_sources_enable_security %}
-{%          if ansible_facts['lsb']['major_release'] < 11 %}
+{%          if ansible_facts['lsb']['major_release'] | int < 11 %}
 {{ item }} {{ apt_sources_debian_repository_url }}/{{ ansible_distribution|lower }}-security {{ apt_sources_debian_distribution }}/updates main
 {%          else %}
 {{ item }} {{ apt_sources_debian_repository_url }}/{{ ansible_distribution|lower }}-security {{ apt_sources_debian_distribution }}-security main
